@@ -1,0 +1,9 @@
+# Ignoring Node Modules
+/*/node_modules
+/*/*/node_modules
+
+# Ignoring Log Files
+
+# Ignoring lock files
+/*/yarn.lock
+/*/*/yarn.lock

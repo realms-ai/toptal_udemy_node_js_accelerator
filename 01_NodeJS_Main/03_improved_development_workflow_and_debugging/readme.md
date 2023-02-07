@@ -12,3 +12,5 @@
    - Syntax Errors
    - Runtime Errors
    - Logical Errors
+   - https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+   - https://nodejs.org/en/docs/guides/debugging-getting-started/
