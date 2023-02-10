@@ -1,0 +1,48 @@
+{
+  "port": 3000,
+  "files": ["./01_Getting_Started/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./01_Getting_Started" }
+}
+
+{
+  "port": 3000,
+  "files": ["./02_ts_basics_and_basic_types/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./02_ts_basics_and_basic_types" }
+}
+
+{
+  "port": 3000,
+  "files": ["./03_TS_compiler_config/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./03_TS_compiler_config" }
+}
+
+{
+  "port": 3000,
+  "files": ["./04_next_gen_JS_TS/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./04_next_gen_JS_TS" }
+}
+
+{
+  "port": 3000,
+  "files": ["./05_classes_interfaces/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./05_classes_interfaces" }
+}
+
+{
+  "port": 3000,
+  "files": ["./06_advanced_types/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./06_advanced_types" }
+}
+
+{
+  "port": 3000,
+  "files": ["./07_generics/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./07_generics" }
+}
+
+{
+  "port": 3000,
+  "files": ["./08_decorators/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./08_decorators" }
+}
+
