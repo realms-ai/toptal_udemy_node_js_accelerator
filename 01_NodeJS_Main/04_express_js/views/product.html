@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i"
+      rel="stylesheet" />
+
+    <title>Products</title>
+    <script src="dist/app.js" defer></script>
+  </head>
+  <body class="container">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Shop</a></li>
+          <li><a href="/users">Users</a></li>
+          <li><a href="/products">Products</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Product Page</h1>
+
+      <h2>Create a new product</h2>
+      <form action="/products" method="post">
+        <input type="text" name="title" />
+        <button type="submit">Add Product</button>
+      </form>
+    </main>
+  </body>
+</html>
