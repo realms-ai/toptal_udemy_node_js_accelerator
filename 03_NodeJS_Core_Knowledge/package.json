@@ -1,0 +1,23 @@
+{
+  "name": "03_nodejs_core_knowledge",
+  "version": "1.0.0",
+  "description": "## 01 File Systems & Command lines Args",
+  "main": "01_file_systems_command_lines_args/dist/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon 02_async_nodejs/dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@types/yargs": "^17.0.22",
+    "chalk": "^5.2.0",
+    "nodemon": "^2.0.20",
+    "yargs": "^17.6.2"
+  },
+  "dependencies": {
+    "axios": "^1.3.2"
+  }
+}

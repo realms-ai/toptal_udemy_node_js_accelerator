@@ -36,8 +36,19 @@ The core primitive types in TypeScript are all lowercase!
      ```
 
    - TSC Init to avoid re-declaration errors
+
      ```
        tsc --init
+     ```
+
+   - How to run the project
+     - on one terminal
+     ```
+        npm run
+     ```
+     - on another terminal (watch .ts files and compile them to .js files)
+     ```
+        tsc -w
      ```
 
 ## 02 Typescipt Basics & Basic Types
