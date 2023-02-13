@@ -1,0 +1,89 @@
+// ******* GRID CONTAINER PROPERTIES *******
+
+// * GRID TEMPLATE *
+// grid-template-rows
+// grid-template-columns
+// grid-template-areas
+
+// * GRID GAP *
+// grid-row-gap
+// grid-column-gap
+
+// justify-items (stretch; center; start; end)
+// align-items (stretch; center; start; end)
+// justify-content (center; start; end; space-between; space-around; space-evenly;)
+// align-content (center; start; end; space-between; space-around; space-evenly;)
+
+// grid-auto-rows
+// grid-auto-columns
+// grid-auto-flow
+
+// ******* GRID ITEMS *******
+
+// ** GRID AREA **
+
+// * GRID ROW *
+// grid-row-start
+// grid-row-end
+
+// * GRID COLUMN *
+// grid-column-start
+// grid-column-end
+
+// grid-area
+
+// justify-self
+// align-self
+
+// order
+
+@import "animations"
+@import "typography"
+@import "animations"
+// @import "utilities"
+
+:root
+  // --color-primary: #eb2f64
+  // --color-primary-light: #FF3366
+  // --color-primary-dark: #BA265D
+  // --shadow-dark: 0 2rem 4rem rgba(0, 0, 0, .3)
+
+  // --color-grey-light-1: #faf9f9
+  // --color-grey-light-2: #f4f2f2
+  // --color-grey-light-3: #f0eeee
+  // --color-grey-light-4: #ccc
+
+  // --color-grey-dark-1: #333
+  // --color-grey-dark-2: #777
+  // --color-grey-dark-3: #999
+  
+  
+
+*
+  margin: 0
+  padding: 0
+
+*,
+*::before,
+*::after
+  box-sizing: inherit
+
+html
+  box-sizing: border-box
+  font-size: 62.5% // 1rem = 10px, Default is 16px
+
+  @include responsive(mobile)
+    font-size: 37.5% //1rem = 6px
+  
+  @include responsive(tab-p)
+    font-size: 50% //1rem = 8px
+  
+  @include responsive(tab-l)
+    font-size: 56.25% // 1rem = 9px
+  
+
+body
+  // min-width: 100vw
+  min-height: 100vh
+  background-image: linear-gradient(rgba($color-primary-dark, .5), rgba($color-primary, .5))
+  

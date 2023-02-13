@@ -7,29 +7,44 @@
     <link
       href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i"
       rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Products</title>
-    <script src="dist/app.js" defer></script>
+    <script src="javascript/index.js" defer></script>
   </head>
-  <body class="container">
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Shop</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/products">Products</a></li>
-        </ul>
-      </nav>
-    </header>
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="header__nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="/">Shop</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/users">Users</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/products">Products</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-    <main>
-      <h1>Product Page</h1>
-
-      <h2>Create a new product</h2>
-      <form action="/products" method="post">
-        <input type="text" name="title" />
-        <button type="submit">Add Product</button>
-      </form>
-    </main>
+      <main class="main-content">
+        <h1 class="heading-1">Product Page</h1>
+        <div class="main-content__text">
+          <h2 class="heading-2">Create a new product</h2>
+          <form action="/products" method="post" class="form">
+            <input
+              type="text"
+              name="title"
+              class="form__input"
+              placeholder="Product Name" />
+            <button class="btn btn-primary form__button" type="submit">
+              Add Product
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
   </body>
 </html>

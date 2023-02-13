@@ -18,8 +18,19 @@ const app = express();
 let __dirname: string;
 
 // MIDDLEWARE
+// Adding Body Parser to read FORMS data
 const initBodyParser = () => {
   app.use(bodyParser.urlencoded({ extended: false }));
+};
+
+// Adding static path of assets
+const staticPaths = () => {
+  app.use(express.static(path.join(__dirname, 'assets/public')));
+};
+
+const middleware = () => {
+  staticPaths();
+  initBodyParser();
 };
 
 // FUNCTIONS
@@ -102,13 +113,13 @@ const getDirectoryPath = () => {
   const dirPath = path.dirname(filePath);
   // __dirname = dirPath.split('/dist')[0];
   // OR
-  __dirname = path.join(dirPath, '../');
+  __dirname = path.join(dirPath, '..');
   console.log('Dirname: ', __dirname);
   // console.log(path.dirname(process.mainModule?.filename));
 };
 
 const integrateExpressRouter = () => {
-  initBodyParser();
+  middleware();
   routes();
   app.listen(3000);
 };

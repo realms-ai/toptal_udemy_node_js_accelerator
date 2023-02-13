@@ -7,24 +7,34 @@
     <link
       href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i"
       rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Shop Store</title>
-    <script src="dist/app.js" defer></script>
+    <script src="javascript/index.js" defer></script>
   </head>
-  <body class="container">
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Shop</a></li>
-          <li><a href="/users">Users</a></li>
-          <li><a href="/products">Products</a></li>
-        </ul>
-      </nav>
-    </header>
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="header__nav">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="/">Shop</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/users">Users</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="/products">Products</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
-    <main>
-      <h1>Shop Page</h1>
-      <p>List of all the products</p>
-    </main>
+      <main class="main-content">
+        <h1 class="heading-1">Shop Page</h1>
+        <div class="main-content__text">
+          <p>List of all the products</p>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
