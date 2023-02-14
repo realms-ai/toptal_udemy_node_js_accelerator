@@ -1,0 +1,16 @@
+<%- include('includes/_head.ejs') %> <%- include('includes/_header.ejs') %>
+<h1 class="heading-1">Product Page</h1>
+<div class="main-content__text">
+  <h4 class="heading-4">Create a new product</h4>
+  <form action="/products" method="post" class="form">
+    <input
+      type="text"
+      name="title"
+      class="form__input"
+      placeholder="Product Name" />
+    <button class="btn btn-primary form__button" type="submit">
+      Add Product
+    </button>
+  </form>
+</div>
+<%- include('includes/_end.ejs') %>

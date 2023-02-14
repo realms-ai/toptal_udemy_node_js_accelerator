@@ -1,0 +1,27 @@
+<%- include('includes/_head.ejs') %> <%- include('includes/_header.ejs') %>
+<h1 class="heading-1">Shop Page</h1>
+<div class="main-content__text">
+  <% if (products.length > 0) { %>
+  <section class="products">
+    <% for(let product of products) { %>
+    <div class="product-card">
+      <img
+        src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg"
+        class="product-card__image"
+        alt="Book Image" />
+      <h3 class="heading-3 product-card__title"><%= product.title %></h3>
+      <div class="product-card__content">
+        <h5 class="heading-5 product-card__price">$ 1.99</h5>
+        <p class="product-card__description">Product Description</p>
+      </div>
+      <div class="product-card__actions">
+        <button class="btn-btn-primary">Add Product</button>
+      </div>
+    </div>
+    <% } %>
+  </section>
+  <% } else { %>
+  <p>No product to show</p>
+  <% } %>
+</div>
+<%- include('includes/_end.ejs') %>

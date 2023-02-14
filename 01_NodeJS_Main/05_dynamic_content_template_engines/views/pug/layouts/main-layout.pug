@@ -1,0 +1,23 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i' rel='stylesheet')
+  link(rel='stylesheet' type='text/css' href='/css/style.css')
+  block title
+  block styles
+  block javascripts
+  script(src='javascript/index.js' defer='')
+.container
+  header.header
+    nav.header__nav
+      ul.nav__list
+        li.nav__item(class=(path === '/' ? 'active' : ''))
+          a.nav__link(href='/') Shop
+        li.nav__item(class=(path === 'users' ? 'active' : ''))
+          a.nav__link(href='/users') Users
+        li.nav__item(class=(path === 'products' ? 'active' : ''))
+          a.nav__link(href='/products') Products
+  main.main-content
+    block content

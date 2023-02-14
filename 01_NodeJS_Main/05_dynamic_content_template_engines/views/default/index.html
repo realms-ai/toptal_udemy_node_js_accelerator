@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i"
       rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
-    <title>Products</title>
+    <title>Shop Store</title>
     <script src="javascript/index.js" defer></script>
   </head>
   <body>
@@ -16,13 +16,13 @@
       <header class="header">
         <nav class="header__nav">
           <ul class="nav__list">
-            <li class="nav__item">
+            <li class="nav__item active">
               <a class="nav__link" href="/">Shop</a>
             </li>
             <li class="nav__item">
               <a class="nav__link" href="/users">Users</a>
             </li>
-            <li class="nav__item active">
+            <li class="nav__item">
               <a class="nav__link" href="/products">Products</a>
             </li>
           </ul>
@@ -30,19 +30,26 @@
       </header>
 
       <main class="main-content">
-        <h1 class="heading-1">Product Page</h1>
+        <h1 class="heading-1">Shop Page</h1>
         <div class="main-content__text">
-          <h2 class="heading-2">Create a new product</h2>
-          <form action="/products" method="post" class="form">
-            <input
-              type="text"
-              name="title"
-              class="form__input"
-              placeholder="Product Name" />
-            <button class="btn btn-primary form__button" type="submit">
-              Add Product
-            </button>
-          </form>
+          <section class="products">
+            <div class="product-card">
+              <img
+                src=""
+                alt="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg"
+                class="product-card__image"
+                alt="Book Image" />
+              <h3 class="heading-3 product-card__title">Product Title</h3>
+              <div class="product-card__content">
+                <h5 class="heading-5 product-card__price">$ 1.99</h5>
+                <p class="product-card__description">Product Description</p>
+              </div>
+              <div class="product-card__actions">
+                <button class="btn-btn-primary">Add Product</button>
+              </div>
+            </div>
+          </section>
+          <p>List of all the products</p>
         </div>
       </main>
     </div>
