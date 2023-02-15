@@ -1,0 +1,48 @@
+{
+  "name": "learning-express-js",
+  "version": "1.0.0",
+  "description": "Learning Express JS Dynamic Content & Templating Engines",
+  "main": "dist/app.js",
+  "type": "module",
+  "scripts": {
+    "watch:sass": "sass --watch project/app/assets/sass/main.sass:dist/app/assets/css/style.css",
+    "compile:sass": "sass project/app/assets/sass/main.sass:dist/app/assets/css/style.comp.css",
+    "concat:css": "concat -o dist/public/assets/css/style.concat.css dist/app/assets/css/*css",
+    "prefix:css": "postcss --use autoprefixer -b 'last 5 versions' dist/public/assets/css/style.concat.css -o dist/public/assets/css/style.prefix.css",
+    "compress:css": "sass --style compressed dist/public/assets/css/style.prefix.css:dist/public/assets/css/style.min.css",
+    "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css",
+    "typescript:watch": "tsc -b project project/app/assets -w",
+    "start:app": "nodemon dist/config/application.js",
+    "start": "npm-run-all --parallel watch:sass typescript:watch start:app",
+    "debug": "node inspect dist/config/application.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "learning",
+    "express.js"
+  ],
+  "author": "Navpreet Singh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/ejs": "^3.1.1",
+    "@types/express": "^4.17.17",
+    "@types/express-handlebars": "^6.0.0",
+    "@types/node": "^18.13.0",
+    "@types/pug": "^2.0.6",
+    "autoprefixer": "^10.4.13",
+    "chalk": "^5.2.0",
+    "concat": "^1.0.3",
+    "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.58.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7",
+    "pug": "^3.0.2"
+  }
+}

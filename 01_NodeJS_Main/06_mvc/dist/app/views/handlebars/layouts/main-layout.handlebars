@@ -1,0 +1,40 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link
+      href='https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i'
+      rel='stylesheet'
+    />
+    <link rel='stylesheet' type='text/css' href='/css/style.css' />
+    <title>{{headTitle}}</title>
+    <script src='javascript/index.js' defer></script>
+    {{#if productCSS}}
+      <link rel='stylesheet' type='text/css' href='/css/product.css' />
+    {{/if}}
+  </head>
+  <body>
+    <div class='container'>
+      <header class='header'>
+        <nav class='header__nav'>
+          <ul class='nav__list'>
+            <li class='nav__item {{#if activeShop}}active{{/if}}'>
+              <a class='nav__link' href='/'>Shop</a>
+            </li>
+            <li class='nav__item {{#if activeUser}}active{{/if}}'>
+              <a class='nav__link' href='/users'>Users</a>
+            </li>
+            <li class='nav__item {{#if activeProduct}}active{{/if}}'>
+              <a class='nav__link' href='/products'>Products</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class='main-content'>
+        {{{body}}}
+      </main>
+    </div>
+  </body>
+</html>

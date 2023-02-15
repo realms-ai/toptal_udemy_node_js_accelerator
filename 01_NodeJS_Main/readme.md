@@ -12,4 +12,6 @@
 
 ## 05 Working with Dynamic Content & Adding Template Engines
 
-## 06 The Model View Controller (MVC)
+## 06 The Model View Controller (MVC) (Section 7, 8, 9) in **06_mvc** folder
+
+## 07 Databases (Sql and No-Sql) (Section 10, 11, 12, 13) in **07_databases** folder

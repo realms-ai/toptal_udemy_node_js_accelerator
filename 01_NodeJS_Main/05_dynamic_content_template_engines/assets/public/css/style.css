@@ -489,7 +489,7 @@ body {
 
 .user-card {
   display: grid;
-  grid-template-rows: 30rem 10rem auto;
+  grid-template-rows: 30rem 5rem auto;
   grid-gap: 1rem;
   justify-items: center;
   align-items: center;

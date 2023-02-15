@@ -1,0 +1,63 @@
+.main-content
+  display: grid
+  grid-template-rows: 10rem auto
+  grid-gap: 3rem
+
+  justify-items: center
+  // align-items: center
+
+  &__text
+    width: 100%
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: min-content
+
+    grid-gap: 1rem
+
+    justify-items: center
+
+    p
+      line-height: 2rem
+      font-size: 2rem
+    
+.products
+  max-width: 90%
+  display: grid
+  grid-template-rows: minmax(min-content, max-content)
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr))
+  // grid-template-columns: repeat(4, 1fr)
+  // grid-template-rows: max-content(30rem)
+  
+  grid-gap: 3rem
+
+  &__list
+    border-right: .1rem solid rgba($color-grey-dark-2, .5)
+
+  &__form
+    text-align: center
+
+.users-page,
+.products-page
+  max-width: 98%
+  display: grid
+  grid-template-rows: minmax(min-content, max-content)
+  grid-template-columns: 4fr 1fr
+  
+  grid-gap: 2rem
+
+.users
+  max-width: 98%
+  max-height: 100%
+  display: grid
+  grid-template-rows: minmax(min-content, max-content)
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr))
+  // grid-template-columns: repeat(4, 1fr)
+  // grid-template-rows: max-content(30rem)
+  
+  grid-gap: 3rem
+
+  &__list
+    border-right: .1rem solid rgba($color-grey-dark-2, .5)
+
+  &__form
+    text-align: center

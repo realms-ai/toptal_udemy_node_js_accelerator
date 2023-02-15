@@ -1,0 +1,68 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">Admin Products Page</h1>
+<div class="main-content__text">
+  <div class="products-page">
+    <div class="products__list">
+      <section class="products">
+        <div class="product-card">
+          <img src=<%= product.imageUrl ||
+          "https://img.freepik.com/free-photo/table-top-isolate_1404-218.jpg" %>
+          class="product-card__image" alt="Product Image" />
+          <h3 class="heading-3 product-card__title">
+            <%= product.title || 'Missing Title' %>
+          </h3>
+          <div class="product-card__content">
+            <h5 class="heading-5 product-card__price">
+              $<%= product.price || 'N/A' %>
+            </h5>
+            <p class="product-card__description">
+              <%= product.description || 'Missing Description' %>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="products__form">
+      <h4 class="heading-4 mb3">Create a new product</h4>
+      <form
+        action="http://localhost:3000/products/<%= id %>"
+        method="POST"
+        data-method="PUT"
+        class="form">
+        <input type="hidden" name="_method" value="PATCH" />
+        <input
+          type="text"
+          name="title"
+          class="form__input"
+          placeholder="Product Name"
+          value="<%= product.title %>" />
+        <input
+          type="text"
+          name="imageUrl"
+          class="form__input"
+          placeholder="Image Url"
+          value="<%= product.imageUrl %>" />
+        <input
+          type="number"
+          name="price"
+          class="form__input"
+          placeholder="Product Price"
+          step=".01"
+          value="<%= product.price %>" />
+        <textarea
+          name="description"
+          class="form__textarea"
+          cols="5"
+          rows="10"
+          placeholder="Product Description">
+<%= product.description %></textarea
+        >
+        <button class="btn btn-primary form__button" type="submit">
+          Edit Product
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>
