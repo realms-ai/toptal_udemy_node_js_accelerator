@@ -23,10 +23,10 @@
             </p>
           </div>
           <div class="product-card__actions">
-            <a href="/products/<%= index %>">
+            <a href="/products/<%= product.id %>">
               <button class="btn btn-warn mr5">Edit</button>
             </a>
-            <form action="/products/<%= index %>" method="POST">
+            <form action="/products/<%= product.id %>" method="POST">
               <input type="hidden" name="_method" value="DELETE" />
               <button
                 class="btn btn-danger"

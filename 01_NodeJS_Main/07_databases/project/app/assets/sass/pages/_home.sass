@@ -42,8 +42,15 @@
   display: grid
   grid-template-rows: minmax(min-content, max-content)
   grid-template-columns: 4fr 1fr
-  
   grid-gap: 2rem
+
+.cart__products
+  max-width: 98%
+  display: grid
+  grid-template-rows: minmax(min-content, max-content)
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 2rem
+  margin: auto
 
 .users
   max-width: 98%
@@ -61,3 +68,53 @@
 
   &__form
     text-align: center
+
+.order__actions
+  text-align: center
+
+.orders-page
+  width: 100%
+  display: grid
+  grid-template-columns: 4fr 1fr
+  justify-items: center
+  grid-gap: 2rem
+
+.order-items__list
+  width: 100%
+
+.orders
+  width: 98%
+  margin: auto
+  display: grid
+  grid-template-rows: minmax(min-content, max-content)
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr))
+  grid-gap: 3rem
+
+.order
+  display: block
+  border: solid .1rem black
+  background-color: $color-primary 
+  
+  &__link
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: minmax(min-content, max-content)
+    grid-gap: 2rem
+    text-decoration: none
+    color: white
+
+    h5
+      font-size: 2rem
+
+.order-card__content
+  display: grid
+  grid-template-columns: 1fr
+  grid-gap: 2rem
+
+  .product-card__price
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: 2rem
+
+    span
+      justify-items: right

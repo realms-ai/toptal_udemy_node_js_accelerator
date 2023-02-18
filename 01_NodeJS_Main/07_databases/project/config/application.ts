@@ -6,6 +6,9 @@ import { routes } from './routes.js';
 import { setTemplateEngine } from './template_engine.js';
 import { Constants } from './constants.js';
 import { staticPaths } from './environment/development.js';
+import { sequelize } from './database.js';
+import { tableRelationships } from '../db/relationships.js';
+import { User, UserType } from '../app/models/user.js';
 
 // CONSTANTS & VARIABLES
 const app = express();
@@ -52,19 +55,44 @@ const changeRequestType = () => {
   });
 };
 
+// Initializing a user on every request
+const authenticateLoginUser = () => {
+  interface authUser extends express.Request {
+    user: UserType;
+  }
+  app.use(async (req, res, next) => {
+    const user = await User.findByPk(1);
+    if (user?.id)
+      req.cookies = {
+        user: user,
+      };
+    next();
+  });
+};
+
 const middleware = async () => {
   await staticPath();
   setTemplateEngine();
   initBodyParser();
   changeRequestType();
+  await tableRelationships();
+  authenticateLoginUser();
+  const syncOptions = {
+    // force: true, // Used in DEVELOPMENT to update the DB tables
+  };
+  await sequelize.sync(syncOptions);
 };
 
 const main = async () => {
-  await middleware();
-  routes();
-  errorRoute();
-  console.log('Listening at PORT: 3000');
-  app.listen(3000);
+  try {
+    await middleware();
+    routes();
+    errorRoute();
+    console.log('Listening at PORT: 3000');
+    app.listen(3000);
+  } catch (e) {
+    console.log('Error in config/application.js: ', e);
+  }
 };
 
 // CODE WHICH RUNS ON EXECUTING THE FILE

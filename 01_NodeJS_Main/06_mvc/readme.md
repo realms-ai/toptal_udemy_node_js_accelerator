@@ -26,6 +26,13 @@
 
 1. Check _package.json, project/tsconfig.json, project/app/assets/tsconfig.json_ file for configurations and scripts
 
+   ```
+      npm start # to run all proesses in parallel
+      npm run start:app # to run just the application
+      npm run typescript:watch # to watch .ts files and convert them to .js files in dist folder
+      npm run watch:sass # to watch .sass files and convert them to .css files in dist folder
+   ```
+
 2. **project/app/views** folder is a symlink of folder **dist/app/views**
 
    ```

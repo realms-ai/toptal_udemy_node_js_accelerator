@@ -6,7 +6,7 @@
     <div class="products__list">
       <% if (products.length > 0) { %>
       <section class="products">
-        <% products.forEach((product, index) => { %>
+        <% products.forEach((product) => { %>
         <div class="product-card">
           <img src=<%= product.imageUrl ||
           "https://img.freepik.com/free-photo/table-top-isolate_1404-218.jpg" %>
@@ -23,10 +23,10 @@
             </p>
           </div>
           <div class="product-card__actions">
-            <a href="/products/<%= index %>">
+            <a href="/products/<%= product.id %>">
               <button class="btn btn-warn mr5">Edit</button>
             </a>
-            <form action="/products/<%= index %>" method="POST">
+            <form action="/products/<%= product.id %>" method="POST">
               <input type="hidden" name="_method" value="DELETE" />
               <button
                 class="btn btn-danger"

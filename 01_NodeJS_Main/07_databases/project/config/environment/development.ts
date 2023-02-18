@@ -7,7 +7,7 @@ const { __dirname } = Constants;
 
 // Adding static path of assets
 const staticPaths = () => {
-  console.log('Static Path', path.join(__dirname, 'dist/app/assets'));
+  // console.log('Static Path', path.join(__dirname, 'dist/app/assets'));
   app.use(
     '/',
     express.static(path.join(__dirname, 'dist/app/assets'), {

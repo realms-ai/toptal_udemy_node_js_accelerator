@@ -30,7 +30,7 @@ const errorRoute = () => {
   });
 };
 
-// Handling PUT/DELETE requests.
+// Handling PUT/DELETE requests via POST forms.
 const changeRequestType = () => {
   app.use((req, res, next) => {
     if (req?.body?._method) {

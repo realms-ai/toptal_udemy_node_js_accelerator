@@ -5,9 +5,9 @@ const router = express.Router();
 const { space, __dirname, domain } = Constants;
 const index = () => {
     // Default Page
-    router.get('/', (req, res) => {
+    router.get('/', async (req, res) => {
         // console.log(space, 'In the default middleware');
-        const products = Product.fetch();
+        const products = await Product.findAll();
         res.render('home/index', {
             products: products,
             diplayProducts: products.length > 0,

@@ -53,5 +53,7 @@ export const Constants = {
   domain: process.env.PROJECT_DOMAIN || 'http://localhost:3000',
 };
 
+// console.log(' NODE_ENV: ', process.env.NODE_ENV);
+
 // import Constants from "./constants.ts"
 // console.log(Constants.space)

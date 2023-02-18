@@ -14,7 +14,7 @@
             class="user-card__image" />
           <h3 class="heading-3 user-card__title"><%= user.name %></h3>
           <div class="user-card__content">
-            <p class="user-card__description">user Description</p>
+            <p class="user-card__description"><%= user.email %></p>
           </div>
         </div>
         <% } %>
@@ -31,6 +31,11 @@
           name="name"
           class="form__input"
           placeholder="User Name" />
+        <input
+          type="text"
+          name="email"
+          class="form__input"
+          placeholder="User Email" />
         <button class="btn btn-primary form__button" type="submit">
           Add User
         </button>

@@ -18,7 +18,8 @@ const { space, domain } = Constants;
 const index = () => {
   router.get('/', async (req, res) => {
     console.log(space, 'Middleware is in Product Page');
-    const products = await Product.fetch();
+    const user = req.cookies.user;
+    const products = await user.getProducts(); //Product.findAll();
     res.render('products/index', {
       headTitle: 'Products',
       path: 'products',
@@ -31,12 +32,15 @@ const index = () => {
 };
 
 const create = () => {
-  router.post('/', (req, res) => {
-    // console.log(space, 'Adding product middleware');
+  router.post('/', async (req, res) => {
+    console.log(space, 'Adding product middleware');
     // console.log(req.body);
     if (req.body?.title) {
-      const product = new Product(req.body);
-      product.save();
+      // const data = { ...req.body, userId: req.cookies.user.id };
+      // await Product.create(data);
+      // OR
+      const user = req.cookies.user;
+      user.createProduct(req.body);
     }
     res.redirect(`${domain}/products`);
   });
@@ -46,7 +50,8 @@ const edit = () => {
   router.get('/:id', async (req, res) => {
     console.log(space, 'Middleware is in Edit Product Page');
     const id = +req.params.id;
-    const product: ProductType = await Product.fetchOne(id);
+    const user = req.cookies.user;
+    const [product] = await user.getProducts({ where: { id: id } }); // Product.findByPk(id) OR Product.findAll({where: {id: id}});
     res.render('products/edit', {
       headTitle: 'Products',
       path: 'products',
@@ -59,19 +64,35 @@ const edit = () => {
 };
 
 const update = () => {
-  router.put('/:id', (req, res) => {
+  router.put('/:id', async (req, res) => {
     console.log(space, 'Middleware is in Update Product Page');
     const id = +req.params.id;
-    Product.update(id, req.body);
+    const data: ProductType = req.body;
+
+    const product = await Product.update(data, { where: { id: id } });
+    console.log('Product: ');
+
+    // OR
+
+    // let product = await Product.findByPk(id);
+    // product?.setAttributes(data);
+    // console.log('Product: ', product?.changed());
+    // await product?.save();
+
     res.redirect(`${domain}/products`);
   });
 };
 
 const destroy = () => {
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', async (req, res) => {
     console.log(space, 'Middleware is in Delete Product Page');
     const id = +req.params.id;
-    Product.delete(id);
+    await Product.destroy({ where: { id: id } });
+
+    // OR
+    // const product = await Product.findByPk();
+    // await product?.destroy();
+
     res.redirect(`${domain}/products`);
   });
 };
