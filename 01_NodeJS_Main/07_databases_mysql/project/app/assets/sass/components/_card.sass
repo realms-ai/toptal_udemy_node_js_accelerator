@@ -1,0 +1,47 @@
+.product,
+.user
+  &-card
+    display: grid
+    grid-template-rows: 30rem 5rem auto 5rem
+    grid-template-columns: 1fr
+    grid-gap: 1rem
+    justify-items: center
+    align-items: center
+    border: 1px solid $color-primary
+    padding: 2rem
+    background-image: linear-gradient(to bottom right, rgba($color-grey-light-1, 1), rgba($color-grey-light-2, .5))
+
+    &__image
+      max-height: 100%
+      max-width: 100%
+
+    &__title
+    
+    &__content
+      display: grid
+      grid-template-rows: 2rem 1fr
+      grid-gap: .5rem
+
+      justify-items: center
+    
+    &__price
+      font-size: 2rem
+    
+    &__description
+    
+    &__actions
+      display: grid
+      grid-auto-flow: column
+      margin-top: 2rem
+
+.user
+  &-card
+    display: grid
+    grid-template-rows: 30rem 5rem auto
+    
+    grid-gap: 1rem
+    justify-items: center
+    align-items: center
+    border: 1px solid $color-primary
+    padding: 2rem
+    background-image: linear-gradient(to bottom right, rgba($color-grey-light-1, 1), rgba($color-grey-light-2, .5))
