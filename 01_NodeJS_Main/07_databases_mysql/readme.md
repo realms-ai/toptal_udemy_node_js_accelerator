@@ -1,4 +1,4 @@
-# Databases
+# Databases SQL (MySQL with Sequelize)
 
 1. No SQL
    ![](../images/no_sql.png)

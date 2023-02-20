@@ -45,12 +45,12 @@
 
      - If you are using bash profile
        ```
-         echo "export NODE_ENV=test" >> ~/.bashrc && source ~/.bashrc
+         echo "export NODE_ENV='test'" >> ~/.bashrc && source ~/.bashrc
          exec bash
        ```
      - If you are using zsh profile
        ```
-         echo "export NODE_ENV=test" >> ~/.zshrc && source ~/.zshrc
+         echo "export NODE_ENV='test'" >> ~/.zshrc && source ~/.zshrc
          exec zsh
        ```
 
