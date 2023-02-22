@@ -1,0 +1,33 @@
+.form
+  display: grid
+  grid-template-columns: 1fr
+  grid-template-rows: repeat(2, min-content)
+  grid-gap: 2rem
+
+  justify-items: center
+
+  &__textarea
+    display: block
+    font-family: inherit
+    font-size: 2rem
+    color: inherit
+    background-color: var(--color-grey-light-2)
+    width: 90%
+
+  &__input
+    display: block
+    font-family: inherit
+    font-size: 2rem
+    color: inherit
+    background-color: var(--color-grey-light-2)
+    border-radius: 100px
+    padding: 1.7rem 2rem
+    width: 90%
+    transition: all .2s
+    // margin-right: -3.25rem
+    margin: auto
+
+    &:focus
+      outline: none
+      width: 100%
+      background-color: var(--color-grey-light-3)

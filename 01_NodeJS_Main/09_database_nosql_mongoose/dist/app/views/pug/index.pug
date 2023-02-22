@@ -1,0 +1,22 @@
+extends layouts/main-layout.pug
+
+block title
+  title #{headTitle}
+
+block content
+  h1.heading-1 Online Shopping Store
+  .main-content__text
+    //- Display Products Card
+    if products.length > 0
+      section.products
+        each product in products
+          .product-card
+            img.product-card__image(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg", alt="Book Image")
+            h3.heading-3.product-card__title #{product.title}
+            .product-card__content 
+              h5.heading-5.product-card__price $1.99
+              p.product-card__description Product Description 
+            .product-card__actions
+              button.btn.btn-primary Add Product
+    else 
+      p No product to show

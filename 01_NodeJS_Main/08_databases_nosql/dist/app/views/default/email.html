@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+  </head>
+  <body>
+    <div
+      class="container"
+      style="
+        min-height: 100vh;
+        min-width: 95vw;
+        box-sizing: border-box;
+        font-size: 100%;
+        font-family: sans-serif;
+        display: grid;
+        grid-template-rows: 10rem min-content 30rem;
+        grid-template-columns: 1fr;
+      ">
+      <header
+        class="header"
+        style="
+          border: 0.1rem solid #88a0bb;
+          background-image: linear-gradient(to bottom right, #c69963, #8d5212);
+          display: grid;
+          grid-template-columns: 4fr 1fr;
+          justify-items: center;
+          align-items: center;
+          max-height: 10rem;
+        ">
+        <h1 style="color: white; font-size: 4rem; margin-left: 20%">
+          Realms AI
+        </h1>
+        <img
+          src="https://en.gravatar.com/userimage/231890493/0e0e659fe87ef94c2014e0dd69468b8e.png?size=200"
+          alt="Realms AI Logo"
+          style="max-height: 5rem"
+          style="
+            max-height: 8rem;
+            justify-self: end;
+            margin-right: 2rem;
+            border-radius: 50%;
+          " />
+      </header>
+
+      <div
+        class="main"
+        style="
+          display: grid;
+          grid-template-columns: 1fr;
+          background-image: linear-gradient(to bottom right, #f6f6f9, #aaa);
+          padding: 2rem 5rem;
+          font-size: 1.5rem;
+          color: #101d2c;
+        ">
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <h2><b>Respected {{name}},</b></h2>
+        </div>
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <p>You have raised a query on your site for a <b>demo</b>.</p>
+        </div>
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <p>We have generated <b>credentials</b> for you as below:</p>
+        </div>
+        <div
+          style="
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+
+            max-width: 55rem;
+          ">
+          <a href="#" class="">
+            text
+            <button
+              style="
+                font-size: 1.4rem;
+                font-family: sans-serif;
+                color: #f9f7f6;
+                text-transform: uppercase;
+                padding: 1.8rem 3rem;
+                cursor: pointer;
+                border: none;
+                box-shadow: 0 2rem 4rem rgba(black, 0.3);
+                background-color: #c69963;
+                border-radius: 3rem;
+                transition: all 0.2s;
+              "
+              onpointerenter="
+                this.style.background.color='#B28451'; 
+                this.style.transform='translateX(.5rem) translateY(-.5rem) scale(1.05)';
+              "
+              onpointerleave="
+                this.style.background.color='#c69963';
+                this.style.transform='translateX(0) translateY(0) scale(1)';
+              ">
+              Link
+            </button>
+          </a>
+        </div>
+        <div
+          style="
+            margin: 2rem 2rem 0;
+            display: grid;
+            grid-template-rows: repeat(2, 5rem);
+            grid-template-columns: 50rem;
+            width: 50rem;
+            border: 0.2rem solid rgb(131, 90, 40);
+            border-radius: 21rem;
+            box-shadow: 0 2rem 4rem rgba(black, 0.3);
+          "
+          class="creds">
+          <div
+            class="table"
+            style="
+              display: grid;
+              grid-template-columns: repeat(2, 25rem);
+              grid-template-rows: 5rem;
+              justify-items: center;
+              align-items: center;
+            ">
+            <div
+              class="table__item"
+              style="
+                width: 100%;
+                height: 100%;
+                border-right: 0.1rem solid #88a0bb;
+                border-bottom: 0.1rem solid #88a0bb;
+                text-align: center;
+              ">
+              <h4><b class="">USERNAME</b></h4>
+            </div>
+            <div
+              class="table__item"
+              style="
+                width: 100%;
+                height: 100%;
+                border-left: 0.1rem solid #88a0bb;
+                border-bottom: 0.1rem solid #88a0bb;
+                text-align: center;
+              ">
+              <h4><b>PASSWORD</b></h4>
+            </div>
+          </div>
+          <div
+            class="table"
+            style="
+              display: grid;
+              grid-template-columns: repeat(2, 25rem);
+              grid-template-rows: 5rem;
+              justify-items: center;
+              align-items: center;
+            ">
+            <div
+              class="table__item"
+              style="
+                width: 100%;
+                height: 100%;
+                border-right: 0.1rem solid #88a0bb;
+                border-top: 0.1rem solid #88a0bb;
+                text-align: center;
+              ">
+              <h4>{{username}}</h4>
+            </div>
+            <div
+              class="table__item"
+              style="
+                width: 100%;
+                height: 100%;
+                border-left: 0.1rem solid #88a0bb;
+                border-top: 0.1rem solid #88a0bb;
+                text-align: center;
+              ">
+              <h4>{password}</h4>
+            </div>
+          </div>
+        </div>
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <p><b>Major things to watch</b> in the demo</p>
+          <ol>
+            <li>Point 1</li>
+            <li>Point 2</li>
+          </ol>
+        </div>
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <p>Your credentials are valid till <b>6 hours</b> .</p>
+        </div>
+        <div
+          style="margin-top: 1rem; display: grid; grid-template-columns: 1fr">
+          <p>
+            You can re-new your credentials anytime after their expiry in future
+            for demo again.
+          </p>
+        </div>
+        <div
+          style="
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            color: #1908b7;
+          ">
+          <h5>Warm Regards</h5>
+        </div>
+      </div>
+      <footer
+        style="
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(3, 8rem);
+          background-image: linear-gradient(to bottom left, #04448d, #b28451);
+          padding-left: 2rem;
+          padding-top: 2rem;
+        ">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 8rem;
+            align-items: center;
+            justify-items: center;
+          ">
+          <a href="https://github.com/realms-ai">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+              alt="Github Logo"
+              style="max-height: 5rem" />
+          </a>
+          <a href="https://bitbucket.org/realms-ai/">
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/bitbucket-8-1175256.png"
+              alt="Bitbucket Logo"
+              style="max-height: 5rem" />
+          </a>
+          <a href="https://gitlab.com/realms-ai">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/5968/5968853.png"
+              alt="Gitlab Logo"
+              style="max-height: 5rem" />
+          </a>
+        </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 8rem;
+            align-items: center;
+            justify-items: center;
+          ">
+          <a href="https://www.linkedin.com/in/navpreetsingh21/">
+            <img
+              src="https://1000logos.net/wp-content/uploads/2017/03/Color-of-the-LinkedIn-Logo.jpg"
+              alt="LinkedIn Logo"
+              style="max-height: 5rem" />
+          </a>
+
+          <a href="https://twitter.com/realms_ai">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/2491px-Twitter-logo.svg.png"
+              alt="Twitter Logo"
+              style="max-height: 5rem" />
+          </a>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 8rem;
+            align-items: center;
+            justify-items: center;
+          ">
+          <a href="https://www.linkedin.com/in/navpreetsingh21/">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+              alt="Instagram Logo"
+              style="max-height: 5rem" />
+          </a>
+          <a href="https://www.linkedin.com/in/navpreetsingh21/">
+            <img
+              src="https://www.facebook.com/images/fb_icon_325x325.png"
+              alt="facebook Logo"
+              style="max-height: 5rem" />
+          </a>
+          <a href="https://www.linkedin.com/in/navpreetsingh21/">
+            <img
+              src="https://images.indianexpress.com/2017/08/youtube_logo_new-759.jpg"
+              alt="LinkedIn Logo"
+              style="max-height: 5rem" />
+          </a>
+        </div>
+        <p style="text-align: center">© 2023 All rights reserved</p>
+      </footer>
+    </div>
+    <div
+      class="container_1"
+      style="
+        min-height: 80vh;
+        background-image: linear-gradient(to bottom right, #04448d, #ff7722);
+      "></div>
+  </body>
+</html>
