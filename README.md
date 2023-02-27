@@ -3,6 +3,7 @@
 ## Office Hour Recordings
 
 - [Link](https://docs.google.com/spreadsheets/d/19Wyo-YRuzJErvvXviuwzx802ta_z47jyV6Qje9xkpKs/edit#gid=0)
+- [Repo](https://github.com/realms-ai/toptal_node_accelerator_office_project)
 
 ## Courses
 
