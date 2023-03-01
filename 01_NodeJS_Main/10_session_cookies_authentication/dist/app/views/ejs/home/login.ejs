@@ -1,0 +1,24 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">Login Page</h1>
+<div class="main-content__text">
+  <div class="login mt5">
+    <form action="http://localhost:3000/login" method="POST" class="form">
+      <input
+        type="text"
+        name="email"
+        class="form__input"
+        placeholder="Email"
+        value="Jerrold78@gmail.com" />
+      <input
+        type="text"
+        name="password"
+        class="form__input"
+        placeholder="Password"
+        value="password" />
+      >
+      <button class="btn btn-primary form__button" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>
