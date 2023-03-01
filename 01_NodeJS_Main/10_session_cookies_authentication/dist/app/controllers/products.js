@@ -16,8 +16,8 @@ const index = () => {
         try {
             console.log(space, 'Middleware is in Product Page');
             const user = req.cookies?.user;
-            const products = await Product.find()
-                .select('title price -_id')
+            const products = await Product.find({ userId: user._id })
+                .select('title price imageUrl description -_id')
                 .populate('userId', 'name');
             console.log('Products: ', products);
             res.render('products/index', {
@@ -27,7 +27,7 @@ const index = () => {
                 products: products,
                 diplayProducts: products.length > 0,
                 domain: domain,
-                loggedIn: req.session.isLoggedIn,
+                loggedIn: req.session?.isLoggedIn,
             });
         }
         catch (err) {
@@ -66,7 +66,7 @@ const edit = () => {
             product: product,
             id: id,
             domain: domain,
-            loggedIn: req.session.isLoggedIn,
+            loggedIn: req.session?.isLoggedIn,
         });
     });
 };

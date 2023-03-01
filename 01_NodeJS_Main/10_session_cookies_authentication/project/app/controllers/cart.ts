@@ -1,17 +1,28 @@
 import express from 'express';
+import debug from 'debug';
 
 import { Constants } from '../../config/constants.js';
-import { User, UserMethods, UserModel } from '../models/user.js';
+import {
+  CartItemType,
+  User,
+  UserMethods,
+  UserModel,
+  UserType,
+} from '../models/user.js';
 
 const router = express.Router();
 const { space, domain } = Constants;
+const log = debug('app:Cart:Controller');
 
 const index = () => {
   // Get all data
   router.get('/', async (req, res) => {
-    const user = await req.cookies?.user;
-    const cartItems = await user.getCartItems();
-    console.log('CartItems: ', cartItems);
+    const user = await User.findById(req.cookies?.user?._id);
+    log('In Cart index route');
+    log('User: ', user);
+    let cartItems: CartItemType[] = [];
+    if (user) cartItems = await user.getCartItems();
+    log('CartItems: ', cartItems);
     res.render('cart/index', {
       headTitle: 'Cart',
       path: 'cart',
@@ -49,14 +60,18 @@ const add = () => {
 const create = () => {
   router.post('/', async (req, res) => {
     try {
-      console.log('In Cart Controller to add product to it');
-      const user = await req.cookies?.user;
+      log('In Cart Controller to add product to it');
+      const user = await User.findById(req.cookies?.user._id);
+      log('User: ', user);
       const productId = req.body.id;
-      await user.addToCart(productId);
-      console.log('Redirecting');
+      if (user) await user.addToCart(productId);
+      await user?.save();
+      log('Redirecting');
+      log('User: ', user);
+      debugger;
       res.redirect(`${domain}`);
     } catch (e) {
-      console.log(e);
+      log(e);
     }
   });
 };
@@ -82,7 +97,7 @@ const update = () => {
 
 const destroy = () => {
   router.delete('/:id', async (req, res) => {
-    console.log('In Delete Cart Route');
+    log('In Delete Cart Route');
     // Delete existing data from the table
     const user = await req.cookies?.user;
     // await user.removeFromCart(req.params.id);

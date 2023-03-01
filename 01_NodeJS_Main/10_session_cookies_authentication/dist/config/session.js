@@ -1,10 +1,10 @@
 import session from 'express-session';
 import ConnectMongoDBSession from 'connect-mongodb-session';
 import { Constants } from './constants.js';
-const { MONGODB_URL, mongodb_name, SECRET } = Constants;
+const { MONGODB_URL, mongodb_name, SECRET, MONGODB_URL_QUERY } = Constants;
 const MongoDBStore = ConnectMongoDBSession(session);
 const store = new MongoDBStore({
-    uri: `${MONGODB_URL}/${mongodb_name}`,
+    uri: `${MONGODB_URL}/${mongodb_name}${MONGODB_URL_QUERY}`,
     collection: 'appSessions',
 });
 // Catch errors

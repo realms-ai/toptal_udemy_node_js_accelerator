@@ -73,27 +73,34 @@ const authenticateLoginUser = () => {
     user: UserType;
   }
   app.use(async (req, res, next) => {
-    const cookies = req.get('Cookie');
-    log('Cookies: ', cookies);
-    req.cookies = {};
-    if (cookies?.includes('loggedIn=true')) {
-      log('Cookies: ', cookies);
-      log('Request Cookies', req.cookies);
-      req.cookies.loggedIn = true;
+    // const cookies = req.get('Cookie');
+    // log('Cookies: ', cookies);
+    // req.cookies = {};
+    // if (cookies?.includes('loggedIn=true')) {
+    //   log('Cookies: ', cookies);
+    //   log('Request Cookies', req.cookies);
+    //   req.cookies.loggedIn = true;
+    // }
+    log('Setting User: ');
+    log('User before setting: ', req.cookies?.user);
+    req.cookies = { user: null };
+    if (req.session.userId) {
+      const user = await User.findById(req.session.userId);
+      req.cookies.user = user;
     }
-    const users = await User.find();
-    const user = users[0];
-    if (user?._id) (req.cookies.user = new User()), next();
+    log('User: ', req.cookies.user);
+
+    next();
   });
 };
 
 const middleware = async () => {
   await appSession();
   await staticPath();
-  setTemplateEngine();
-  initBodyParser();
-  changeRequestType();
-  authenticateLoginUser();
+  await setTemplateEngine();
+  await initBodyParser();
+  await changeRequestType();
+  await authenticateLoginUser();
   await mongooseConnect();
 };
 
@@ -102,10 +109,10 @@ const main = async () => {
     await middleware();
     routes();
     errorRoute();
-    console.log('App running at PORT: 3000');
+    log('App running at PORT: 3000');
     app.listen(3000);
   } catch (e) {
-    console.log('Error in config/application.js: ', e);
+    log('Error in config/application.js: ', e);
     throw e;
   }
 };

@@ -27,7 +27,7 @@ const index = () => {
       activeUser: true,
       users: users,
       domain: domain,
-      loggedIn: req.session.isLoggedIn,
+      loggedIn: req.session?.isLoggedIn,
     });
   });
 };

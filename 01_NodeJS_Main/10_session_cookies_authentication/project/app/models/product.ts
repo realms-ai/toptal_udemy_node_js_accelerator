@@ -1,5 +1,4 @@
 import mongoose, { Model, model } from 'mongoose';
-import { getDb } from '../../config/database.js';
 
 import { ObjectId } from 'mongodb';
 import { productsSchema } from '../../db/migrations/create_products.js';

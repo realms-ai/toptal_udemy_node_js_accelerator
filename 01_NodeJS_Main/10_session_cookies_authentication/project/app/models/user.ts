@@ -2,6 +2,9 @@ import mongoose, { Model, model } from 'mongoose';
 import { Product, ProductType } from './product.js';
 import { ObjectId } from 'mongodb';
 import { userSchema } from '../../db/migrations/create_users.js';
+import debug from 'debug';
+
+const log = debug('app:User:Model');
 
 interface CartItemType extends ProductType {
   quantity: number;
@@ -39,7 +42,8 @@ userSchema.method('getCartItems', async function (productId: string) {
   // Another Way where you can ref product
   // this.populate('cart.productId').execPopulate()
   // user: {cart: [{productId: ObjectId, quantity: number}]}
-
+  log('In Get Cart Items Function');
+  log('User: ', this);
   let result: CartItemType[] = [];
   const cart: { [k: string]: number } = this?.cart;
   if (cart && Object.keys(cart).length > 0) {
@@ -66,18 +70,15 @@ userSchema.method('getCartItems', async function (productId: string) {
 });
 
 userSchema.method('addToCart', async function (productId: string) {
-  console.log('In add to cart method');
-  console.log('Product ID: ', productId);
-  console.log('Cart: ', this.cart);
-  console.log('Product in Cart: ', this.cart[productId]);
+  log('In add to cart method');
+  log('Product ID: ', productId);
+  log('Cart: ', this.cart);
+  log('Product in Cart: ', this.cart[productId]);
   if (this?.cart?.[productId]) this.cart[productId] += 1;
   else this.cart[productId] = 1;
-  console.log('Saving the cart: ', this);
-  await this?.save()
-    .then((sresult: UserModel) => {
-      console.log('Saved Result: ', sresult);
-    })
-    .catch(console.error());
+  log('Saving the cart: ', this);
+  const result = await this.save();
+  log('Result: ', result);
   return;
 });
 
@@ -92,7 +93,7 @@ userSchema.methods.removeFromCart = async function (productId: string) {
 userSchema.method('generateOrder', async function () {
   if (Object.keys(this.cart).length > 0) {
     const items: CartItemType[] = await this.getCartItems();
-    console.log('Items: ', items);
+    log('Items: ', items);
     const data = {
       items: items,
       index: this.orders.length + 1,
@@ -102,10 +103,10 @@ userSchema.method('generateOrder', async function () {
       totalProducts: items.length,
     };
     items.forEach((item) => (data.costPrice += item.price * item.quantity));
-    console.log('Cost Price: ', data.costPrice);
+    log('Cost Price: ', data.costPrice);
     data.taxes = data.costPrice * 0.05;
     data.finalPrice = data.costPrice * 1.05;
-    console.log('Data: ', data);
+    log('Data: ', data);
     this.orders?.push(data);
     this.cart = {};
     await this.save();
@@ -115,5 +116,4 @@ userSchema.method('generateOrder', async function () {
 
 const User = mongoose.model<UserType, UserModel>('User', userSchema);
 
-export { UserModel, UserMethods, UserType, CartItemType, OrderType };
-export { User };
+export { UserModel, UserMethods, UserType, CartItemType, OrderType, User };

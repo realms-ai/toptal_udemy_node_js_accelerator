@@ -3,10 +3,14 @@ import url from 'url';
 
 // FUNCTIONS
 const getDirectoryPath = () => {
-  const filePath = url.fileURLToPath(import.meta.url);
-  const dirPath = path.dirname(filePath);
-  let dirname = path.join(dirPath, '..', '..');
-  return dirname;
+  try {
+    const filePath = url.fileURLToPath(import.meta.url);
+    const dirPath = path.dirname(filePath);
+    let dirname = path.join(dirPath, '..', '..');
+    return dirname;
+  } catch (error) {
+    return '';
+  }
 };
 
 export const Constants = {
@@ -20,6 +24,5 @@ export const Constants = {
     'mongodb+srv://<username>:<password>@<atlas_db>.9wxaszh.mongodb.net',
   MONGODB_URL_QUERY: '?retryWrites=true&w=majority',
   mongodb_name: 'cookies_sessions',
-  SECRET:
-    'l8JTM2QJ4sdRx+Ql/lhpZqo6zws53l0FI8LWV67yDxF07aZH8Tt/K4Tldcln8t4b2TaDn2NoQVx6SmO6Ufiogrn4VnQLO6nk8xhXzXPq1sEDfh4mnBTXHDBDqBQ6LLHLxv0MWB3lvR5T/pw5orlBWJW2zR4P5u++u3UvuHRiTocqeHuCvado6KZbX5vEjMUIGZ+DOsLHmN5mrIJOJXSYAwIcdEDi7F9eANxanSn/IETuBVIWwpPODSuj4NpMeWhKd8YxRFIhrGBnWGgfMaC2cappIuw1+3dLoQUFWK8deJcJCBvP5TJhxg/cUWSYFBOGTL1OzQAPplKNn1HWQXo2Ig==',
+  SECRET: 'test',
 };

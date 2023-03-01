@@ -1,21 +1,25 @@
 import express from 'express';
+import debug from 'debug';
 import { Constants } from '../../config/constants.js';
 const router = express.Router();
 const { domain } = Constants;
+const log = debug('app:Order:Controller');
 const index = () => {
     // Get all data
     router.get('/', async (req, res) => {
+        log('In Order index route');
         const user = req.cookies?.user;
+        log('User: ', user);
         const orders = (await user.orders) || [];
         const firstOrderItems = (await orders?.[0]?.items) || [];
-        console.log('Order Items: ', firstOrderItems);
+        log('Order Items: ', firstOrderItems);
         res.render('orders/index', {
             headTitle: 'Orders',
             path: 'orders',
             domain: domain,
             orders: orders,
             orderItems: firstOrderItems,
-            loggedIn: req.session.isLoggedIn,
+            loggedIn: req.session?.isLoggedIn,
         });
     });
 };
@@ -24,14 +28,14 @@ const show = () => {
         const user = req.cookies?.user;
         const orders = user.orders;
         const orderItems = orders?.[+req.params.id - 1]?.items;
-        console.log('Order Items: ', orderItems);
+        log('Order Items: ', orderItems);
         res.render('orders/index', {
             headTitle: 'Orders',
             path: 'orders',
             domain: domain,
             orders: orders,
             orderItems: orderItems,
-            loggedIn: req.session.isLoggedIn,
+            loggedIn: req.session?.isLoggedIn,
         });
     });
 };

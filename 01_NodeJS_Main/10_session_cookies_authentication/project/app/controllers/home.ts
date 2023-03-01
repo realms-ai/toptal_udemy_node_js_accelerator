@@ -16,7 +16,6 @@ const index = () => {
   router.get('/', async (req, res) => {
     // console.log(space, 'In the default middleware');
     const products = await Product.find();
-    log('LoggedIn Cookie', req.cookies.loggedI);
     res.render('home/index', {
       products: products,
       diplayProducts: products.length > 0,
@@ -24,7 +23,7 @@ const index = () => {
       path: '/',
       activeShop: true,
       domain: domain,
-      loggedIn: req.session.isLoggedIn,
+      loggedIn: req.session?.isLoggedIn,
     });
   });
 };
@@ -36,7 +35,7 @@ const login = () => {
       headTitle: 'Login',
       path: 'login',
       domain: domain,
-      loggedIn: req.session.isLoggedIn,
+      loggedIn: req.session?.isLoggedIn,
     });
   });
 
@@ -49,6 +48,7 @@ const login = () => {
       // Cookies addon options:  Expires, Max-Age, Domain, Secure
       req.session.isLoggedIn = true;
       req.session.userId = user._id.toString();
+      // req.session.user = user;
       res.redirect('/');
     } else res.redirect('/login');
   });
@@ -64,7 +64,7 @@ const logout = () => {
         headTitle: 'Login',
         path: 'login',
         domain: domain,
-        loggedIn: req.session.isLoggedIn,
+        loggedIn: req.session?.isLoggedIn,
       });
     });
   });
