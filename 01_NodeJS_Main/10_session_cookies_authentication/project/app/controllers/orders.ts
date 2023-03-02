@@ -6,7 +6,15 @@ import { CartItemType, User } from '../models/user.js';
 
 const router = express.Router();
 const { domain } = Constants;
-const log = debug('app:Order:Controller');
+const log = debug('app:Orders:Controller');
+
+const all = () => {
+  router.use((req, res, next) => {
+    log('In Order all route');
+    if (req.cookies?.user) next();
+    else res.redirect(`${domain}`);
+  });
+};
 
 const index = () => {
   // Get all data
@@ -23,7 +31,7 @@ const index = () => {
       domain: domain,
       orders: orders,
       orderItems: firstOrderItems,
-      loggedIn: req.session?.isLoggedIn,
+      // loggedIn: req.session?.isLoggedIn,
     });
   });
 };
@@ -40,7 +48,7 @@ const show = () => {
       domain: domain,
       orders: orders,
       orderItems: orderItems,
-      loggedIn: req.session?.isLoggedIn,
+      // loggedIn: req.session?.isLoggedIn,
     });
   });
 };
@@ -90,6 +98,7 @@ const destroy = () => {
 };
 
 const main = () => {
+  all();
   index();
   show();
   // add();

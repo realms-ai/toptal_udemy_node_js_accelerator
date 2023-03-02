@@ -27,6 +27,7 @@
               <button class="btn btn-warn mr5">Edit</button>
             </a>
             <form action="/products/<%= product._id %>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <input type="hidden" name="_method" value="DELETE" />
               <button
                 class="btn btn-danger"
@@ -46,6 +47,7 @@
     <div class="products__form">
       <h4 class="heading-4 mb3">Create a new product</h4>
       <form action="/products" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input
           type="text"
           name="title"

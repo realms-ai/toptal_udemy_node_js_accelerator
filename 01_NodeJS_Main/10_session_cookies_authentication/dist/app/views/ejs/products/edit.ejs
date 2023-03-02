@@ -30,6 +30,7 @@
         method="POST"
         data-method="PUT"
         class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input type="hidden" name="_method" value="PATCH" />
         <input
           type="text"

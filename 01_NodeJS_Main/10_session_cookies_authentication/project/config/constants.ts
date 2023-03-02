@@ -25,4 +25,7 @@ export const Constants = {
   MONGODB_URL_QUERY: '?retryWrites=true&w=majority',
   mongodb_name: 'cookies_sessions',
   SECRET: 'test',
+  CRYPTO_KEY:
+    '7b46d698504461a43f46fdb7ebfdd9455745094679153a8bb13d4c39e9679182',
+  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
 };

@@ -14,10 +14,18 @@ const router = express.Router();
 const { space, domain } = Constants;
 const log = debug('app:Cart:Controller');
 
+const all = () => {
+  router.use((req, res, next) => {
+    log('In Cart all route');
+    if (req.cookies?.user) next();
+    else res.redirect(`${domain}`);
+  });
+};
+
 const index = () => {
   // Get all data
   router.get('/', async (req, res) => {
-    const user = await User.findById(req.cookies?.user?._id);
+    const user = await req.cookies?.user;
     log('In Cart index route');
     log('User: ', user);
     let cartItems: CartItemType[] = [];
@@ -29,7 +37,8 @@ const index = () => {
       domain: domain,
       cartItems: cartItems,
       cartItemsLen: cartItems.length,
-      loggedIn: req.session.isLoggedIn,
+      // loggedIn: req.session?.isLoggedIn,
+      // csrfToken: req.csrfToken(),
     });
   });
 };
@@ -41,7 +50,7 @@ const show = () => {
       headTitle: '',
       path: '',
       domain: domain,
-      loggedIn: req.session.isLoggedIn,
+      loggedIn: req.session?.isLoggedIn,
     });
   });
 };
@@ -61,14 +70,15 @@ const create = () => {
   router.post('/', async (req, res) => {
     try {
       log('In Cart Controller to add product to it');
-      const user = await User.findById(req.cookies?.user._id);
+      const user = await req.cookies?.user;
       log('User: ', user);
       const productId = req.body.id;
-      if (user) await user.addToCart(productId);
-      await user?.save();
-      log('Redirecting');
-      log('User: ', user);
-      debugger;
+      if (user) {
+        await user.addToCart(productId);
+        // await user?.save();
+        log('Redirecting');
+        log('User: ', user);
+      }
       res.redirect(`${domain}`);
     } catch (e) {
       log(e);
@@ -83,7 +93,7 @@ const edit = () => {
       headTitle: '',
       path: '',
       domain: domain,
-      loggedIn: req.session.isLoggedIn,
+      loggedIn: req.session?.isLoggedIn,
     });
   });
 };
@@ -107,6 +117,7 @@ const destroy = () => {
 };
 
 const main = () => {
+  all();
   index();
   // show();
   add();

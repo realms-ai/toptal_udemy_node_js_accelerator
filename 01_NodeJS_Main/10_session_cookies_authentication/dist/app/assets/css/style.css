@@ -958,4 +958,10 @@ h1 {
   justify-items: right;
 }
 
+.signup-errors {
+  text-align: center;
+  font-size: 2rem;
+  color: red;
+}
+
 /*# sourceMappingURL=style.css.map */

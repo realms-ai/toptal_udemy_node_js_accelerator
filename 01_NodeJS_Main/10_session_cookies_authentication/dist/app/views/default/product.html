@@ -34,6 +34,7 @@
         <div class="main-content__text">
           <h2 class="heading-2">Create a new product</h2>
           <form action="/products" method="post" class="form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <input
               type="text"
               name="title"

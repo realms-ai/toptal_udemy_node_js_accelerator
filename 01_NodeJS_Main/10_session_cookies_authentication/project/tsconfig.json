@@ -97,6 +97,6 @@
   },
   "exclude": [
     "./app/assets/**/*.*s",
-    "../distdist/**/*.*js"
+    "../dist/**/*.*js"
   ]
 }

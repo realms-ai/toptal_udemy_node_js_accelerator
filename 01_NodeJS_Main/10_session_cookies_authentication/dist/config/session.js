@@ -4,7 +4,7 @@ import { Constants } from './constants.js';
 const { MONGODB_URL, mongodb_name, SECRET, MONGODB_URL_QUERY } = Constants;
 const MongoDBStore = ConnectMongoDBSession(session);
 const store = new MongoDBStore({
-    uri: `${MONGODB_URL}/${mongodb_name}${MONGODB_URL_QUERY}`,
+    uri: `${MONGODB_URL}/${mongodb_name}`,
     collection: 'appSessions',
 });
 // Catch errors

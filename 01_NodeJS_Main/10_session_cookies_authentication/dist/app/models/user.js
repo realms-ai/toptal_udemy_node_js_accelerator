@@ -40,6 +40,7 @@ userSchema.method('addToCart', async function (productId) {
     else
         this.cart[productId] = 1;
     log('Saving the cart: ', this);
+    // const result = await User.findByIdAndUpdate(this.id, this);
     const result = await this.save();
     log('Result: ', result);
     return;

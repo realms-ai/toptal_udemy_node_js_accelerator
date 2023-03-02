@@ -3,6 +3,8 @@ import { Constants } from '../../config/constants.js';
 import { Product } from '../models/product.js';
 const router = express.Router();
 const { space, domain } = Constants;
+import debug from 'debug';
+const log = debug('app:Products:Controller');
 // FUNCTIONS
 // index: list all the products
 // show/:id: will show only one product w.r.t ID
@@ -11,13 +13,21 @@ const { space, domain } = Constants;
 // edit: show a form to edit an existing product
 // update/:id(PUT/PATCH): will update a product w.r.t ID
 // delete/:id(DELETE): will delete a product w.r.t ID
+const all = () => {
+    log('In Product all route');
+    router.use((req, res, next) => {
+        // if (req.cookies?.user) next();
+        // else res.redirect(`${domain}`);
+        next();
+    });
+};
 const index = () => {
     router.get('/', async (req, res, next) => {
         try {
             console.log(space, 'Middleware is in Product Page');
             const user = req.cookies?.user;
             const products = await Product.find({ userId: user._id })
-                .select('title price imageUrl description -_id')
+                .select('title price imageUrl description')
                 .populate('userId', 'name');
             console.log('Products: ', products);
             res.render('products/index', {
@@ -27,7 +37,8 @@ const index = () => {
                 products: products,
                 diplayProducts: products.length > 0,
                 domain: domain,
-                loggedIn: req.session?.isLoggedIn,
+                // loggedIn: req.session?.isLoggedIn,
+                // csrfToken: req.csrfToken(),
             });
         }
         catch (err) {
@@ -66,7 +77,8 @@ const edit = () => {
             product: product,
             id: id,
             domain: domain,
-            loggedIn: req.session?.isLoggedIn,
+            // loggedIn: req.session?.isLoggedIn,
+            // csrfToken: req.csrfToken(),
         });
     });
 };
@@ -88,6 +100,7 @@ const destroy = () => {
     });
 };
 const main = () => {
+    all();
     index();
     // show()
     // add();

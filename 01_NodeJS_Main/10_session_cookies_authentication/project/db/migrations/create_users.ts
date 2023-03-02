@@ -3,13 +3,15 @@ import { UserMethods, UserModel, UserType } from '../../app/models/user.js';
 
 const userSchema = new Schema<UserType, UserModel, UserMethods>(
   {
-    name: {
+    username: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,

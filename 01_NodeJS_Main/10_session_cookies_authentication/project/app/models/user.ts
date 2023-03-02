@@ -21,7 +21,7 @@ interface OrderType {
 
 interface UserType {
   readonly _id: ObjectId;
-  name: string;
+  username: string;
   email: string;
   password: string;
   imageUrl: string;
@@ -77,6 +77,7 @@ userSchema.method('addToCart', async function (productId: string) {
   if (this?.cart?.[productId]) this.cart[productId] += 1;
   else this.cart[productId] = 1;
   log('Saving the cart: ', this);
+  // const result = await User.findByIdAndUpdate(this.id, this);
   const result = await this.save();
   log('Result: ', result);
   return;

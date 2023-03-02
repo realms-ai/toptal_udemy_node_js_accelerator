@@ -9,6 +9,8 @@ import { ObjectId } from 'mongodb';
 // CONSTANTS & VARIABLES
 const router = express.Router();
 const { space, domain } = Constants;
+import debug from 'debug';
+const log = debug('app:Products:Controller');
 
 // FUNCTIONS
 // index: list all the products
@@ -16,6 +18,14 @@ const { space, domain } = Constants;
 // create(POST): will add one product to DB
 // update/:id(PUT/PATCH): will update a product w.r.t ID
 // delete/:id(DELETE): will delete a product w.r.t ID
+
+const all = () => {
+  router.use((req, res, next) => {
+    log('In User all route');
+    if (req.cookies?.user) next();
+    else res.redirect(`${domain}`);
+  });
+};
 
 const index = () => {
   router.get('/', async (req, res) => {
@@ -27,7 +37,8 @@ const index = () => {
       activeUser: true,
       users: users,
       domain: domain,
-      loggedIn: req.session?.isLoggedIn,
+      // loggedIn: req.session?.isLoggedIn,
+      // csrfToken: req.csrfToken(),
     });
   });
 };
@@ -51,6 +62,7 @@ const destroy = () => {
 };
 
 const main = () => {
+  all();
   index();
   // show()
   create();

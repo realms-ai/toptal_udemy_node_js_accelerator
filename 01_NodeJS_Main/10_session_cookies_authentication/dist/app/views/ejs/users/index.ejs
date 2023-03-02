@@ -26,6 +26,7 @@
     <div class="users__form">
       <h4 class="heading-4 mb3">Create a new User</h4>
       <form action="/users" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input
           type="text"
           name="name"

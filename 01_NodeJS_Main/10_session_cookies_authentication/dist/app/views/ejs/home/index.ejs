@@ -20,12 +20,15 @@
           <%= product.description || 'Missing Description' %>
         </p>
       </div>
+      <% if(loggedIn) {%>
       <div class="product-card__actions">
         <form action="/cart" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <input type="hidden" name="id" value="<%= product._id %>" />
           <button class="btn btn-primary">Add To Cart</button>
         </form>
       </div>
+      <% } %>
     </div>
     <% }) %>
   </section>

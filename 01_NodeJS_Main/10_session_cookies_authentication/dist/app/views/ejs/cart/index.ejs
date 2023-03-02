@@ -4,6 +4,7 @@
 <div class="order__actions mt5 mb3">
   <% if (cartItems.length > 0) { %>
   <form action="/orders" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <button class="btn btn-primary" type="submit">Generate Order</button>
   </form>
   <% } %>
@@ -32,6 +33,7 @@
           </div>
           <div class="product-card__actions">
             <form action="/cart/<%= item._id %>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <input type="hidden" name="_method" value="DELETE" />
               <button
                 class="btn btn-danger"

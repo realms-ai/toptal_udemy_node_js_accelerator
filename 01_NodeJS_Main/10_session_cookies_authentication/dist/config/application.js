@@ -8,10 +8,13 @@ import { mongooseConnect } from './database.js';
 import { User } from '../app/models/user.js';
 import debug from 'debug';
 import { serverSession } from './session.js';
+import csrf from 'csurf';
+import flash from 'connect-flash';
 // CONSTANTS & VARIABLES
 const app = express();
 const { domain, NODE_ENV, SECRET } = Constants;
 const log = debug('app:middleware');
+const csrfProtection = csrf();
 // MIDDLEWARE
 // Dynamic Static Path depending on the Node Environment
 const staticPath = async () => {
@@ -70,14 +73,17 @@ const authenticateLoginUser = () => {
         //   log('Request Cookies', req.cookies);
         //   req.cookies.loggedIn = true;
         // }
-        log('Setting User: ');
-        log('User before setting: ', req.cookies?.user);
-        req.cookies = { user: null };
         if (req.session.userId) {
+            log('Setting User: ');
+            log('User before setting: ', req.cookies?.user);
+            req.cookies = { user: null };
             const user = await User.findById(req.session.userId);
-            req.cookies.user = user;
+            req.cookies.user = new User(user);
+            log('User: ', req.cookies.user);
         }
-        log('User: ', req.cookies.user);
+        // Telling Express to add the below keys to every render
+        res.locals.loggedIn = req.session?.isLoggedIn;
+        res.locals.csrfToken = req.csrfToken();
         next();
     });
 };
@@ -86,6 +92,8 @@ const middleware = async () => {
     await staticPath();
     await setTemplateEngine();
     await initBodyParser();
+    app.use(csrfProtection); // CSRF Token or CORS (Shoule be after body parser so that req.body could be read by it)
+    app.use(flash()); // Flash used to flash error/warning messages on UI
     await changeRequestType();
     await authenticateLoginUser();
     await mongooseConnect();

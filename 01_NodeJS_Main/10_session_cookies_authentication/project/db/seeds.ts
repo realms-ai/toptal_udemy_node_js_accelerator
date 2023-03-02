@@ -1,17 +1,30 @@
 import { faker } from '@faker-js/faker';
+import debug from 'debug';
 
 import { mongooseConnect } from '../config/database.js';
 import { User, UserType } from '../app/models/user.js';
 import { Product, ProductType } from '../app/models/product.js';
 import { ObjectId } from 'mongodb';
+import bcrypt from 'bcryptjs';
+
+const log = debug('app:db:seeds');
+const errLog = debug('error:db:seeds');
 
 // Use of NPM package Faker-JS to create dummy data
-const createRandomUser = () => {
-  return {
-    name: faker.internet.userName(),
-    email: faker.internet.email(),
-    password: 'password',
-  };
+const createRandomUser = async () => {
+  try {
+    log('Creating Random User');
+    return bcrypt.hash('password', 13).then((hashedPassword) => {
+      log('Hashed Password: ', hashedPassword);
+      return {
+        username: faker.internet.userName(),
+        email: faker.internet.email(),
+        password: hashedPassword,
+      };
+    });
+  } catch (error) {
+    errLog(error);
+  }
 };
 
 const createRandomProduct = () => {
@@ -25,10 +38,12 @@ const createRandomProduct = () => {
 
 const createDummyUsers = async (count: number = 10) => {
   const data: UserType[] = [];
-  await Array.from({ length: count }).forEach(async () => {
-    data.push((await createRandomUser()) as UserType);
-  });
-  console.log('User Data: ', data);
+  for (let i = 1; i <= count; i++) {
+    const result = await createRandomUser();
+    log('User Result: ', result);
+    data.push(result as UserType);
+  }
+  log('User Data: ', data);
   await User.insertMany(data);
 };
 
@@ -42,6 +57,7 @@ const createDummyProducts = async (count: number = 10) => {
       userId: userId,
     });
   });
+  log('Products: ', data);
   await Product.insertMany(data);
 };
 

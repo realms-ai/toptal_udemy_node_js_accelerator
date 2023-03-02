@@ -3,7 +3,8 @@ import { Constants } from './constants.js';
 const { MONGODB_URL, mongodb_name, MONGODB_URL_QUERY } = Constants;
 const mongooseConnect = async () => {
     mongoose.set('strictQuery', false);
-    await mongoose.connect(`${MONGODB_URL}/${mongodb_name}${MONGODB_URL_QUERY}`);
+    // await mongoose.connect(`${MONGODB_URL}/${mongodb_name}${MONGODB_URL_QUERY}`);
+    await mongoose.connect(`${MONGODB_URL}/${mongodb_name}`);
 };
 export { mongooseConnect };
 // import { Db, MongoClient, ServerApiVersion } from 'mongodb';
