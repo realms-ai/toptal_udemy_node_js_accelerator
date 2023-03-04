@@ -6,7 +6,8 @@
     <div class="products__list">
       <section class="products">
         <div class="product-card">
-          <img src=<%= product.imageUrl ||
+          <img src=<%= (product.imageUrl && product.imageUrl.includes("-")) ?
+          '/' + product.imageUrl : product.imageUrl ||
           "https://img.freepik.com/free-photo/table-top-isolate_1404-218.jpg" %>
           class="product-card__image" alt="Product Image" />
           <h3 class="heading-3 product-card__title">
@@ -29,7 +30,8 @@
         action="http://localhost:3000/products/<%= id %>"
         method="POST"
         data-method="PUT"
-        class="form">
+        class="form"
+        enctype="multipart/form-data">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input type="hidden" name="_method" value="PATCH" />
         <input
@@ -44,6 +46,11 @@
           class="form__input"
           placeholder="Image Url"
           value="<%= product.imageUrl %>" />
+        <input
+          type="file"
+          name="image"
+          class="form__input"
+          placeholder="Image Url" />
         <input
           type="number"
           name="price"

@@ -23,3 +23,35 @@
 9. [Sendgrid](https://sendgrid.com/docs/)
 
 10. [Express-Validator](https://express-validator.github.io/docs/)
+
+    - [Sanitizing data](https://express-validator.github.io/docs/sanitization)
+    - ![](../images/Validations.png)
+
+11. [Validator.js](https://github.com/chriso/validator.js) is used behind the scenes
+
+12. Error Handling
+
+    - ![](../images/error_handling.png)
+    - ![](../images/working_with_errors.png)
+    - [Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)]
+    - [Express Docs](https://expressjs.com/en/guide/error-handling.html) for error handling
+
+13. File Upload & Download
+
+    - [Upload](https://www.npmjs.com/package/multer) with multer
+    - Download
+      - Simple Read and send
+      - Stream Read and send
+      - Use [PdfKit](https://www.npmjs.com/package/pdfkit) to generate PDF on the fly
+    - Useful resources:
+      - [Multer Official Docs:](https://github.com/expressjs/multer)
+      - [Streaming Files:](https://medium.freecodecamp.org/node-js-streams-everything-you-need-to-know-c9141306be93
+      - [Generating PDFs with PDFKit](http://pdfkit.org/docs/getting_started.html)
+
+14. Asynchronous requesthttps://stripe.com/docshttps://stripe.com/docshttps://stripe.com/docshttps://stripe.com/docs
+
+    - [More on the fetch API: ](https://developers.google.com/web/updates/2015/03/introduction-to-fetch)
+    - [More on AJAX Requests: ](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started)
+
+15. Payment Integration with [Stripe](https://stripe.com/docs)
+    - ![](../images/payment_stripe.png)

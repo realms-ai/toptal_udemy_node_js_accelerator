@@ -52,6 +52,7 @@
           <h5 class="order__id">Order Number</h5>
           <p class="order__amount">Amount (in $)</p>
           <p class="order__total-items">Total products</p>
+          <p class="order-download">Action</p>
         </li>
         <% orders.forEach((order) => { %>
         <li class="order mb3">
@@ -59,6 +60,15 @@
             <h5 class="order__id"><%= order.index %></h5>
             <p class="order__amount">$<%= order.finalPrice.toFixed(2) %></p>
             <p class="order__total-items"><%= order.totalProducts %></p>
+          </a>
+          <a
+            class="order-download"
+            href="/orders/<%= order.index %>/download"
+            target="_blank">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGEx_E5_QwAq7ye8nnZd8PXJDg-KkTALs3qQ&usqp=CAU"
+              alt="Download"
+              style="height: 2rem" />
           </a>
         </li>
         <% }) %>

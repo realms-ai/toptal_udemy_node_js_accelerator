@@ -1,5 +1,5 @@
 // IMPORTS
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 
 import { routes } from './routes.js';
@@ -12,10 +12,12 @@ import debug from 'debug';
 import { serverSession } from './session.js';
 import csrf from 'csurf';
 import flash from 'connect-flash';
+import multer, { Multer } from 'multer';
+import path from 'path';
 
 // CONSTANTS & VARIABLES
 const app = express();
-const { domain, NODE_ENV, SECRET } = Constants;
+const { domain, NODE_ENV, SECRET, __dirname } = Constants;
 const log = debug('app:middleware');
 const csrfProtection = csrf();
 
@@ -27,7 +29,36 @@ const staticPath = async () => {
 };
 // Adding Body Parser to read FORMS data
 const initBodyParser = () => {
+  // Define Multer Storage
+  const multerFileStoreage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'dist/lib/public/images');
+    },
+    filename: (req, file, cb) => {
+      cb(null, new Date().toISOString() + '-' + file.originalname);
+    },
+  });
+
+  // Used to filter files
+  const fileTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+  const multerFilterFiles = (
+    req: Request,
+    file: Express.Multer.File,
+    cb: CallableFunction
+  ) => {
+    const result = fileTypes.includes(file.mimetype);
+    log('Multer Filter Result: ', result);
+    if (result) cb(null, true);
+    else cb(null, false);
+  };
+
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(
+    multer({
+      storage: multerFileStoreage,
+      fileFilter: multerFilterFiles,
+    }).single('image')
+  );
 };
 
 // Handling Sessions
@@ -44,6 +75,19 @@ const errorRoute = () => {
       path: '',
       domain: domain,
       loggedIn: req.session.isLoggedIn,
+    });
+  });
+};
+
+const errorHandler = () => {
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    log('In Error Route');
+    res.status(500).render('500', {
+      headTitle: 'Server down',
+      path: '',
+      domain: domain,
+      loggedIn: req.session.isLoggedIn,
+      error: err,
     });
   });
 };
@@ -118,6 +162,7 @@ const main = async () => {
     await middleware();
     routes();
     errorRoute();
+    errorHandler();
     log('App running at PORT: 3000');
     app.listen(3000);
   } catch (e) {

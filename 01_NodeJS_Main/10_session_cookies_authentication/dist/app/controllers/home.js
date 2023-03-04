@@ -136,7 +136,21 @@ const login = () => {
     const passwordValidation = body('password', 'Password should be minimum 5 chars long')
         .isLength({ min: 5 })
         .isAlphanumeric();
-    router.post('/login', emailValidation, passwordValidation, async (req, res) => {
+    router.post('/login', [emailValidation, passwordValidation], async (req, res) => {
+        log('In POST Login route');
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            log('Validation Errors: ', errors);
+            log('Validation Errors: ', errors.array());
+            return res.status(422).render('home/login', {
+                headTitle: 'login',
+                path: 'login',
+                domain: domain,
+                // loggedIn: req.session?.isLoggedIn,
+                errors: errors.array().map((err) => `${err.param}: ${err.msg}`),
+                // csrfToken: req.csrfToken(),
+            });
+        }
         const { email, password } = req.body;
         const [user] = await User.find({ email: email });
         if (user) {
