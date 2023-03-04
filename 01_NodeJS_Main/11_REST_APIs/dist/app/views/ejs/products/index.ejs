@@ -1,0 +1,80 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">Admin Products Page</h1>
+<div class="main-content__text">
+  <div class="products-page">
+    <div class="products__list">
+      <% if (products.length > 0) { %>
+      <section class="products">
+        <% products.forEach((product, index) => { %>
+        <div class="product-card">
+          <img src=<%= product.imageUrl ||
+          "https://img.freepik.com/free-photo/table-top-isolate_1404-218.jpg" %>
+          class="product-card__image" alt="Product Image" />
+          <h3 class="heading-3 product-card__title">
+            <%= product.title || 'Missing Title' %>
+          </h3>
+          <div class="product-card__content">
+            <h5 class="heading-5 product-card__price">
+              $<%= product.price || 'N/A' %>
+            </h5>
+            <p class="product-card__description">
+              <%= product.description || 'Missing Description' %>
+            </p>
+          </div>
+          <div class="product-card__actions">
+            <a href="/products/<%= product._id %>">
+              <button class="btn btn-warn mr5">Edit</button>
+            </a>
+            <form action="/products/<%= product._id %>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <input type="hidden" name="_method" value="DELETE" />
+              <button
+                class="btn btn-danger"
+                type="submit"
+                onclick="confirmDeletion()">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </section>
+      <% } else { %>
+      <p>No product to show</p>
+      <% } %>
+    </div>
+    <div class="products__form">
+      <h4 class="heading-4 mb3">Create a new product</h4>
+      <form action="/products" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input
+          type="text"
+          name="title"
+          class="form__input"
+          placeholder="Product Name" />
+        <input
+          type="text"
+          name="imageUrl"
+          class="form__input"
+          placeholder="Image Url" />
+        <input
+          type="number"
+          name="price"
+          class="form__input"
+          placeholder="Product Price"
+          step=".01" />
+        <textarea
+          name="description"
+          class="form__textarea"
+          cols="5"
+          rows="10"
+          placeholder="Product Description"></textarea>
+        <button class="btn btn-primary form__button" type="submit">
+          Add Product
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>
