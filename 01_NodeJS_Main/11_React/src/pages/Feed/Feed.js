@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { io } from 'socket.io-client';
 
 import Post from '../../components/Feed/Post/Post';
 import Button from '../../components/Button/Button';
@@ -8,6 +9,8 @@ import Paginator from '../../components/Paginator/Paginator';
 import Loader from '../../components/Loader/Loader';
 import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 import './Feed.css';
+
+const socket = io('ws://localhost:3001');
 
 class Feed extends Component {
   state = {
@@ -35,6 +38,9 @@ class Feed extends Component {
       .catch(this.catchError);
 
     this.loadPosts();
+    socket.on('hello', (args) => {
+      console.log('Socket Args: ', args);
+    });
   }
 
   loadPosts = (direction) => {
@@ -62,6 +68,7 @@ class Feed extends Component {
         return res.json();
       })
       .then((resData) => {
+        console.log('Posts List: ', resData);
         this.setState({
           posts: resData.posts,
           totalPosts: resData.totalItems,
@@ -180,6 +187,35 @@ class Feed extends Component {
           error: err,
         });
       });
+    socket.on('posts', (resData) => {
+      console.log('POST Response Data from Socket: ', resData);
+      const post = {
+        _id: resData.post._id,
+        title: resData.post.title,
+        content: resData.post.content,
+        imageUrl: resData.post.imageUrl,
+        creator: resData.post.userId.username,
+        createdAt: resData.post.createdAt,
+      };
+      console.log('Socket post response: ', post);
+      this.setState((prevState) => {
+        let updatedPosts = [...prevState.posts];
+        if (prevState.editPost) {
+          const postIndex = prevState.posts.findIndex(
+            (p) => p._id === prevState.editPost._id
+          );
+          updatedPosts[postIndex] = post;
+        } else if (prevState.posts.length < 2) {
+          updatedPosts = prevState.posts.concat(post);
+        }
+        return {
+          posts: updatedPosts,
+          isEditing: false,
+          editPost: null,
+          editLoading: false,
+        };
+      });
+    });
   };
 
   statusInputChangeHandler = (input, value) => {
@@ -271,7 +307,7 @@ class Feed extends Component {
                 <Post
                   key={post._id}
                   id={post._id}
-                  author={post.user}
+                  author={post.userId.username.toUpperCase()}
                   date={new Date(post.createdAt).toLocaleDateString('en-US')}
                   title={post.title}
                   image={post.imageUrl}
