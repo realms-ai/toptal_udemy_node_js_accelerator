@@ -5,6 +5,8 @@ import { body, validationResult } from 'express-validator';
 const router = express.Router();
 const { space, domain } = Constants;
 import debug from 'debug';
+import { User } from '../../models/user.js';
+import { socketIO } from '../../../config/socket_io.js';
 const log = debug('app:Posts:Controller');
 // FUNCTIONS
 // index: list all the Posts
@@ -17,6 +19,21 @@ const log = debug('app:Posts:Controller');
 const all = () => {
     log('In Post all route');
     router.use((req, res, next) => {
+        // Find User here and throw error if not found
+        try {
+            const user = User.findById(req.cookies.userId);
+            if (!user) {
+                const error = new Error('User Not Found');
+                error.statusCode = 404;
+                throw error;
+            }
+            next(user);
+        }
+        catch (error) {
+            if (!error.statusCode)
+                error.statusCode = 500;
+            next(error);
+        }
         // if (req.cookies?.user) next();
         // else res.redirect(`${domain}`);
         next();
@@ -28,12 +45,13 @@ const index = () => {
             log(space, 'Middleware is in Post Index Route Page');
             const userId = req.cookies?.userId;
             const posts = await Post.find({ userId: userId })
-                .select('title imageUrl content')
+                .select('title imageUrl content createdAt')
                 .populate('userId')
                 .select('email username _id');
             log('Posts: ', posts);
             res.status(200).json({
                 posts: posts,
+                totalPosts: 5,
             });
         }
         catch (err) {
@@ -83,6 +101,7 @@ const create = () => {
         await post.save();
         post.populate('userId');
         res.status(201).send({ post: post });
+        socketIO.sendMessage('posts', { post: post });
     });
 };
 const show = () => {

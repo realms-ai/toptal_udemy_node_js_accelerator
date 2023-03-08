@@ -13,5 +13,7 @@ const postsSchema = new Schema({
         ref: 'User',
         // required: true,
     },
+}, {
+    timestamps: true,
 });
 export { postsSchema };

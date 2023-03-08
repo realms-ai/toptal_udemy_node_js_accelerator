@@ -16,6 +16,7 @@ import multer, { Multer } from 'multer';
 import path from 'path';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
+import { initiateSockets } from './socket_io.js';
 
 // CONSTANTS & VARIABLES
 const app = express();
@@ -176,7 +177,8 @@ const main = async () => {
     errorRoute();
     errorHandler();
     log('App running at PORT: 3001');
-    app.listen(3001);
+    const server = app.listen(3001);
+    await initiateSockets(server);
   } catch (e) {
     log('Error in config/application.js: ', e);
     throw e;

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 
 import { Constants } from './constants.js';
 import debug from 'debug';
@@ -18,9 +18,31 @@ interface jwtToken {
   token: string;
 }
 
-authRouter.use(async (req, res, next) => {
+const checkAuthorizationHeader = (req: Request) => {
+  if (!req.get('Authorization')) {
+    const error = new Error('Not authenticated');
+    error.cause = {
+      statusCode: 401,
+    };
+    throw error;
+  }
+};
+
+const authController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   log('In Auth Route');
   try {
+    await checkAuthorizationHeader(req);
+    // if (!req.get('Authorization')) {
+    //   const error = new Error('Not authenticated');
+    //   error.cause = {
+    //     statusCode: 401,
+    //   };
+    //   throw error;
+    // }
     const token = req.get('Authorization')?.split(' ')[1];
     let decodedToken: any;
 
@@ -35,11 +57,15 @@ authRouter.use(async (req, res, next) => {
         userId: decodedToken?.userId,
       };
       next();
+      return;
     }
   } catch (error: any) {
     if (!error.statusCode) error.statusCode = 500;
     next(error);
+    return error;
   }
-});
+};
 
-export { authRouter };
+authRouter.use(authController);
+
+export { authRouter, authController, checkAuthorizationHeader };

@@ -6,9 +6,26 @@ import jwt from 'jsonwebtoken';
 const authRouter = express.Router();
 const log = debug('app:middleware:auth');
 const { space, domain, SECRET } = Constants;
-authRouter.use(async (req, res, next) => {
+const checkAuthorizationHeader = (req) => {
+    if (!req.get('Authorization')) {
+        const error = new Error('Not authenticated');
+        error.cause = {
+            statusCode: 401,
+        };
+        throw error;
+    }
+};
+const authController = async (req, res, next) => {
     log('In Auth Route');
     try {
+        await checkAuthorizationHeader(req);
+        // if (!req.get('Authorization')) {
+        //   const error = new Error('Not authenticated');
+        //   error.cause = {
+        //     statusCode: 401,
+        //   };
+        //   throw error;
+        // }
         const token = req.get('Authorization')?.split(' ')[1];
         let decodedToken;
         if (token)
@@ -23,12 +40,15 @@ authRouter.use(async (req, res, next) => {
                 userId: decodedToken?.userId,
             };
             next();
+            return;
         }
     }
     catch (error) {
         if (!error.statusCode)
             error.statusCode = 500;
         next(error);
+        return error;
     }
-});
-export { authRouter };
+};
+authRouter.use(authController);
+export { authRouter, authController, checkAuthorizationHeader };

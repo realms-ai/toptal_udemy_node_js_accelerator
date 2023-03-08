@@ -12,6 +12,7 @@ import csrf from 'csurf';
 import flash from 'connect-flash';
 import multer from 'multer';
 import cors from 'cors';
+import { initiateSockets } from './socket_io.js';
 // CONSTANTS & VARIABLES
 const app = express();
 const { domain, NODE_ENV } = Constants;
@@ -140,7 +141,8 @@ const main = async () => {
         errorRoute();
         errorHandler();
         log('App running at PORT: 3001');
-        app.listen(3001);
+        const server = app.listen(3001);
+        await initiateSockets(server);
     }
     catch (e) {
         log('Error in config/application.js: ', e);
