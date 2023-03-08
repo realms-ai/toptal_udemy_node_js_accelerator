@@ -1,0 +1,47 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">Users Page</h1>
+<div class="main-content__text">
+  <div class="users-page">
+    <div class="users__list">
+      <% if (users.length > 0) { %>
+      <section class="users mb2">
+        <% for(let user of users) { %>
+        <div class="user-card">
+          <img
+            src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png"
+            alt="User Image"
+            class="user-card__image" />
+          <h3 class="heading-3 user-card__title"><%= user.name %></h3>
+          <div class="user-card__content">
+            <p class="user-card__description"><%= user.email %></p>
+          </div>
+        </div>
+        <% } %>
+      </section>
+      <% } else { %>
+      <p>No Users</p>
+      <% } %>
+    </div>
+    <div class="users__form">
+      <h4 class="heading-4 mb3">Create a new User</h4>
+      <form action="/users" method="post" class="form">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input
+          type="text"
+          name="name"
+          class="form__input"
+          placeholder="User Name" />
+        <input
+          type="text"
+          name="email"
+          class="form__input"
+          placeholder="User Email" />
+        <button class="btn btn-primary form__button" type="submit">
+          Add User
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>

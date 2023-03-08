@@ -1,0 +1,38 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">SignUp Page</h1>
+<% if(errors.length > 0) { %>
+<div class="signup-errors mt5 mb5">
+  <h3 class="mb2">Errors</h3>
+  <ol>
+    <% errors.forEach((error, index) => { %>
+    <li><%= error %></li>
+    <% }) %>
+  </ol>
+</div>
+<% } %>
+<div class="main-content__text">
+  <div class="signup mt5">
+    <form action="http://localhost:3000/signup" method="POST" class="form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <input
+        type="text"
+        name="username"
+        class="form__input"
+        placeholder="Username" />
+      <input type="text" name="email" class="form__input" placeholder="Email" />
+      <input
+        type="password"
+        name="password"
+        class="form__input"
+        placeholder="Password" />
+      <input
+        type="password"
+        name="confirmPassword"
+        class="form__input"
+        placeholder="Confirm Password" />
+      <button class="btn btn-primary form__button" type="submit">Signup</button>
+    </form>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>

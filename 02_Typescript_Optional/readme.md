@@ -95,6 +95,8 @@ The core primitive types in TypeScript are all lowercase!
 
 ## 04 Next-generation javascript & Typescript
 
+- const user = {}! (TS will not check it's existence now)
+
 ## 05 Classes and Interfaces
 
 1. Classes VS Objects

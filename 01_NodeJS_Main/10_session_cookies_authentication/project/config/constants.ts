@@ -1,13 +1,19 @@
 import path from 'node:path';
 import url from 'url';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
 
 // FUNCTIONS
 const getDirectoryPath = () => {
   try {
     const filePath = url.fileURLToPath(import.meta.url);
     const dirPath = path.dirname(filePath);
-    let dirname = path.join(dirPath, '..', '..');
-    return dirname;
+    let dirnamee = path.join(dirPath, '..', '..');
+
+    // OR
+    const __filename: string = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    return dirnamee || __dirname;
   } catch (error) {
     return '';
   }

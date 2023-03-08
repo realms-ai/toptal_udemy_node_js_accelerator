@@ -1,6 +1,7 @@
 import express from 'express';
 import debug from 'debug';
 import fs from 'fs';
+import fsPromises from 'fs/promises';
 import path from 'path';
 import PDFDocument from 'pdfkit';
 
@@ -138,6 +139,8 @@ const show = () => {
         res.send(data);
       }
     });
+    // OR
+    res.sendFile(pathName);
   });
 };
 

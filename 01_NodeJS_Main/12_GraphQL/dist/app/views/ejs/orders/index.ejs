@@ -1,0 +1,79 @@
+<%- include('../includes/_head.ejs') %> <%- include('../includes/_header.ejs')
+%>
+<h1 class="heading-1">Orders Page</h1>
+<div class="main-content__text">
+  <div class="orders-page">
+    <div class="order-items__list">
+      <% if (orderItems.length > 0) { %>
+      <section class="orders">
+        <% orderItems.forEach((item, index) => { %>
+        <div class="product-card">
+          <img src=<%= item.imageUrl ||
+          "https://img.freepik.com/free-photo/table-top-isolate_1404-218.jpg" %>
+          class="product-card__image" alt="Product Image" />
+          <h3 class="heading-3 product-card__title">
+            <%= item.title || 'Missing Title' %>
+          </h3>
+          <div class="order-card__content">
+            <h5 class="heading-5 product-card__price">
+              Individual Price:
+              <span> $<%= (+item.price || 0).toFixed(2) || 'N/A' %> </span>
+            </h5>
+            <h5 class="heading-5 product-card__price">
+              Quantity: <span> <%= item.quantity || 'N/A' %> </span>
+            </h5>
+            <h5 class="heading-5 product-card__price">
+              Tax:
+              <span>
+                $<%= (+item.price * 0.05 * item.quantity).toFixed(2) || 'N/A' %>
+              </span>
+            </h5>
+            <h5 class="heading-5 product-card__price">
+              Total:
+              <span>
+                $<%= (+item.price * 1.05 * item.quantity).toFixed(2) || 'N/A' %>
+              </span>
+            </h5>
+            <p class="product-card__description mt3">
+              <%= item.description || 'Missing Description' %>
+            </p>
+          </div>
+        </div>
+        <% }) %>
+      </section>
+      <% } else { %>
+      <p>No Items in the Order</p>
+      <% } %>
+    </div>
+    <div>
+      <h4 class="heading-4 mb3">Orders</h4>
+      <ul class="order__list">
+        <li class="order mb3 order__link">
+          <h5 class="order__id">Order Number</h5>
+          <p class="order__amount">Amount (in $)</p>
+          <p class="order__total-items">Total products</p>
+          <p class="order-download">Action</p>
+        </li>
+        <% orders.forEach((order) => { %>
+        <li class="order mb3">
+          <a class="order__link" href="<%= domain %>/orders/<%= order.index %>">
+            <h5 class="order__id"><%= order.index %></h5>
+            <p class="order__amount">$<%= order.finalPrice.toFixed(2) %></p>
+            <p class="order__total-items"><%= order.totalProducts %></p>
+          </a>
+          <a
+            class="order-download"
+            href="/orders/<%= order.index %>/download"
+            target="_blank">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGEx_E5_QwAq7ye8nnZd8PXJDg-KkTALs3qQ&usqp=CAU"
+              alt="Download"
+              style="height: 2rem" />
+          </a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+</div>
+<%- include('../includes/_end.ejs') %>
