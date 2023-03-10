@@ -70,3 +70,77 @@ This notes include things which are not in the notes
   - Keep all micro-services in monorepo
   - **express.json()** to tell the application of _Content-Type_
   - Use of **all** in express middleware _.all()_
+
+## Week 3
+
+- Recording 1: Rest APIs
+
+- Recording 2: MongoDB and Relationship databases
+
+## Week 4
+
+- Recording 1: **User Authentication**
+
+  - Manage Auth0 (24.50 mins)
+  - Applications => (SSO Integrations)
+
+    - Applications => Regular Web Applications
+
+      - ```
+          write a config
+          app.use(auth(config))
+        ```
+      - Go to the application
+        - Quickstart (for callback)
+        - Settings for config data
+        - Connections for db, fb, gmail
+        - Organizations
+
+    - APIs
+      - create API
+      - Machine to machine application
+        - attach the application name
+        - with permissions
+
+  - Authentication
+    - Database connections
+    - Social connections (Fb/Gmail)
+  - User Management
+    - Users
+      - Define metadata in _Details_
+    - Roles
+      - Define roles and assign to the users
+  - Branding
+    - Universal Login
+    - Email Templates
+  - Auth Pipeling
+
+    - Rules
+    - Hooks
+
+  - Actions (1:14:00)
+
+    - Flows
+    - Library
+
+  - Packages (45:00 mins)
+    - express-oauth2-jwt-bearer
+    - middleware to check and validate the access tokens
+  - Auth Controller (routes)
+    - Login
+    - Profile
+  - Auth Routes (45:36 mins)
+    - import {requiresAuth} from 'express-openid-connect' (For checking auth at profile)
+  - Auth Service (48:00 mins, 53:30 mins)
+    - import {ManagementClient, Role} from 'auth0'
+    - create new user (1:03:30 mins)
+
+- Recording 2
+  - Passport module in nestjs
+  - Integrate with Auth0 (32:15 mins)
+  - Payload (41:00 mins)
+  - @nestjs/common (PermissionRestGuard) (43:00 mins)
+  - add permissions to routes
+  - middelware
+  - interceptor
+  -
