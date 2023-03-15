@@ -103,6 +103,7 @@ This notes include things which are not in the notes
         - with permissions
 
   - Authentication
+  - Auth0, Cognito, Firebase, keycloak
     - Database connections
     - Social connections (Fb/Gmail)
   - User Management
@@ -143,4 +144,75 @@ This notes include things which are not in the notes
   - add permissions to routes
   - middelware
   - interceptor
+
+## Week 5
+
+- Recording 1: **Microservices NestJS** (Session)
+
+  - Manage API gateway with Node.JS
+    - http-proxy-middleware
+    - express-gateway
+    - GraphQL (Apollo Federation)
+    - Kafkajs NPM (32:00 mins)
+  - Create API gateway nest app (1:00:00 mins)
+    - nx g @nrwl/nest:app api-gateway
+    - Create proxy middleware for users and products (1:03:00 mins)
+    - On proxy request (NEST)
+      - take JWT
+      - validate JWT
+      - find a wy to send relevant user decoded data to user micro-services
+      - use CORS with origin (API Gateway only)
+    - ON proxy request (Express)
+    - docker-compose (1:21:16 mins)
+
+- Recording 2
+  - Information on products task
+  - NPM library
+    - serverless-http
+  - Plugins
+    - serverless-webpack
+    - serverless-offline
+  - Github Actions Serverless
+
+## Week 6
+
+- Recording 1
+
+  - Apollo Graph Developer
+  - Complete udemy optional course
+  - Avoid N+1 problem with dataloader
+  - npm i @nestjs/passport passport passport-jwt @nestjs/jwt
+  - autogenerate FE application (Pg 8)
+  - JwtGQLAuthGuard to save products with authentication
+
+- Recording 2 (Internal Microservice Communication with GraphQL)
+  - Microservices (NAT protocol)
+  - GraphQL Federation Module
+  - https://github.com/makinhs/nestjs-graphql-medium
+  - SupergraphSdl
+  - Joi (Express validation package), express-joi-validation
+  - class-validator class-transformer in NestJS
+
+## Week 7 (Testing)
+
+- Recording 1
+
+  - supertest
+  - assert
+  - @jest/globals
+  - chance (For random data)
+
+- Recording 2
+  -Auth 0 (Management API)
+  - @nestjs/testing (under the hood use JEST)
+  - jest watch, jest coverage (to see code which is not covered)
+  -
+
+## Week 8
+
+- Recording 1 (CI/CD)
+  - Github Action
+  - Bitbucket CI/CD
+  - Circle CI/CD
+  - AWS Codepipeline
   -
